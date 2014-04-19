@@ -1,0 +1,4 @@
+Create proper unix-like option system
+Add options for minimum/maximum length
+Convert into a ruby gem
+Calculate bits of entropy
