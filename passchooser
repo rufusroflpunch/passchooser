@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+if !ARGV[0] then
+  puts "Generate passwords of random words."
+  puts "Usage: "
+  puts "  passchooser <number of words> <exact length> [optional word file]"
+  abort
+end
+
+num_words = ARGV.shift.to_i
+pass_length = ARGV.shift.to_i
+dict_file = ARGV.shift || "/usr/share/dict/words"
+
+words = File.read(dict_file).split
+
+# Delete any words that have 's in them
+words.delete_if { |w| w =~ /'s/ }
+
+pass = ""
+while pass.length != pass_length do
+  pass = ""
+  (1..num_words).each do
+    pass += words[rand(words.count)]
+  end
+end
+
+puts pass
